@@ -1,0 +1,3 @@
+[submodule "lib/smart-wallet"]
+	path = lib/smart-wallet
+	url = https://github.com/coinbase/smart-wallet
