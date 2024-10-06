@@ -1,5 +1,6 @@
 # directories
 broadcast
+lib
 cache
 coverage
 node_modules

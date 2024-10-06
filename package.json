@@ -1,25 +1,26 @@
 {
   "name": "did-base",
-  "description": "A decentralized identifier for Coinbase Smart Wallets",
+  "description": "An onchain DID that auto-links to a Coinbase Smart Wallet",
   "version": "0.0.0",
+  "private": true,
   "author": {
     "name": "Kames Geraghty",
     "url": "https://github.com/kamescg"
   },
   "scripts": {
     "clean": "rm -rf cache out",
-    "build": "forge build",
+    "build": "forge build --via-ir",
     "lint": "bun run lint:sol && bun run prettier:check",
     "lint:sol": "forge fmt --check && bun solhint \"{script,src,test}/**/*.sol\"",
     "prettier:check": "prettier --check \"**/*.{json,md,yml}\" --ignore-path \".prettierignore\"",
     "prettier:write": "prettier --write \"**/*.{json,md,yml}\" --ignore-path \".prettierignore\"",
-    "test": "forge test",
-    "test:coverage": "forge coverage",
-    "test:coverage:report": "forge coverage --report lcov && genhtml lcov.info --branch-coverage --output-dir coverage",
-    "server": "ts-node ./server/server.ts"
+    "test": "forge test --via-ir",
+    "test:coverage": "forge coverage --via-ir",
+    "test:coverage:report": "forge coverage --via-ir --report lcov && genhtml lcov.info --branch-coverage --output-dir coverage"
   },
   "dependencies": {
-    "@openzeppelin/contracts": "^5.0.1"
+    "@openzeppelin/contracts": "^5.0.1",
+    "prettier-plugin-solidity": "^1.4.1"
   },
   "devDependencies": {
     "@hono/node-server": "^1.13.1",
@@ -27,17 +28,17 @@
     "hono": "^4.6.3",
     "prettier": "^3.0.0",
     "solhint": "^3.6.2",
+    "sqlite": "^5.1.1",
+    "sqlite3": "^5.1.7",
     "ts-node": "^10.9.2",
-    "typescript": "^5.6.2"
+    "typescript": "^5.6.2",
+    "viem": "^2.21.18"
   },
   "keywords": [
     "blockchain",
     "ethereum",
-    "forge",
-    "foundry",
-    "smart-contracts",
-    "solidity",
-    "template"
-  ],
-  "private": true
+    "identity",
+    "coinbase",
+    "smart-wallet"
+  ]
 }
